@@ -15,8 +15,8 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ArticelsService.shared.fetchArticles { (articles, error) in
-            if let articles = articles {
+        ArticelsService.shared.fetchData { (articles, error) in
+            if let articles = articles as? [Article] {
                 self.articles = articles
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

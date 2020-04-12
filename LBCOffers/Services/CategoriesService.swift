@@ -8,15 +8,24 @@
 
 import Foundation
 
-class CategoriesService {
+class CategoriesService: NetworkServiceProtocol {
+    
+    var _baseUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
+
+    var baseUrlString: String {
+        get {
+            _baseUrl
+        }
+        set {
+            _baseUrl = newValue
+        }
+    }
     
     public static let shared = CategoriesService()
 
-    private let baseCategoriesUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
 
-
-    func fetchCategories( completion: @escaping (_ categories: [Category]?, _ error: Error?) -> () ) {
-        if let url = URL(string: baseCategoriesUrl){
+    func fetchData( completion: @escaping (_ responseArray: [Decodable]?, _ error: Error?) -> () ) {
+        if let url = URL(string: baseUrlString){
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data else {
                     return completion(nil, error)
