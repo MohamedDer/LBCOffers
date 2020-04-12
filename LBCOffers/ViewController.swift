@@ -9,10 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var articles = [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       
+        ArticelsService.shared.fetchArticles { (articles, error) in
+            if let articles = articles {
+                self.articles = articles
+            }
+        }
+        
     }
 
 
