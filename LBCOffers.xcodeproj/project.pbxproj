@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6386635E2443597700206EAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386635D2443597700206EAE /* AppDelegate.swift */; };
 		638663602443597700206EAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386635F2443597700206EAE /* SceneDelegate.swift */; };
-		638663622443597700206EAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638663612443597700206EAE /* ViewController.swift */; };
+		638663622443597700206EAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638663612443597700206EAE /* MainViewController.swift */; };
 		638663652443597700206EAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 638663632443597700206EAE /* Main.storyboard */; };
 		638663672443597E00206EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638663662443597E00206EAE /* Assets.xcassets */; };
 		6386636A2443597E00206EAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 638663682443597E00206EAE /* LaunchScreen.storyboard */; };
@@ -19,6 +19,8 @@
 		6386638624435B6500206EAE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386638524435B6500206EAE /* Image.swift */; };
 		6386638824435BC700206EAE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386638724435BC700206EAE /* ArticlesService.swift */; };
 		6386638A24435FC900206EAE /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386638924435FC900206EAE /* CategoriesService.swift */; };
+		6386638F2443630D00206EAE /* MainViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386638E2443630D00206EAE /* MainViewController+UITableView.swift */; };
+		6386639124436F3700206EAE /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6386639024436F3700206EAE /* ArticleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,7 @@
 		6386635A2443597700206EAE /* LBCOffers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBCOffers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6386635D2443597700206EAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6386635F2443597700206EAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		638663612443597700206EAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		638663612443597700206EAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		638663642443597700206EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		638663662443597E00206EAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		638663692443597E00206EAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		6386638524435B6500206EAE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		6386638724435BC700206EAE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
 		6386638924435FC900206EAE /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
+		6386638E2443630D00206EAE /* MainViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+UITableView.swift"; sourceTree = "<group>"; };
+		6386639024436F3700206EAE /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +93,12 @@
 		6386635C2443597700206EAE /* LBCOffers */ = {
 			isa = PBXGroup;
 			children = (
+				6386638C244362CE00206EAE /* Screens */,
+				6386638B244362C300206EAE /* Reusable Views */,
 				638663802443599400206EAE /* Services */,
 				6386637F2443598500206EAE /* Models */,
 				6386635D2443597700206EAE /* AppDelegate.swift */,
 				6386635F2443597700206EAE /* SceneDelegate.swift */,
-				638663612443597700206EAE /* ViewController.swift */,
 				638663632443597700206EAE /* Main.storyboard */,
 				638663662443597E00206EAE /* Assets.xcassets */,
 				638663682443597E00206EAE /* LaunchScreen.storyboard */,
@@ -128,6 +133,31 @@
 				6386638924435FC900206EAE /* CategoriesService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6386638B244362C300206EAE /* Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				6386639024436F3700206EAE /* ArticleTableViewCell.swift */,
+			);
+			path = "Reusable Views";
+			sourceTree = "<group>";
+		};
+		6386638C244362CE00206EAE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6386638D244362E500206EAE /* Main */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		6386638D244362E500206EAE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				638663612443597700206EAE /* MainViewController.swift */,
+				6386638E2443630D00206EAE /* MainViewController+UITableView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,13 +261,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6386639124436F3700206EAE /* ArticleTableViewCell.swift in Sources */,
 				6386638224435A6A00206EAE /* Article.swift in Sources */,
 				6386638A24435FC900206EAE /* CategoriesService.swift in Sources */,
 				6386638824435BC700206EAE /* ArticlesService.swift in Sources */,
 				6386638624435B6500206EAE /* Image.swift in Sources */,
 				6386638424435B3100206EAE /* Category.swift in Sources */,
-				638663622443597700206EAE /* ViewController.swift in Sources */,
+				638663622443597700206EAE /* MainViewController.swift in Sources */,
 				6386635E2443597700206EAE /* AppDelegate.swift in Sources */,
+				6386638F2443630D00206EAE /* MainViewController+UITableView.swift in Sources */,
 				638663602443597700206EAE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

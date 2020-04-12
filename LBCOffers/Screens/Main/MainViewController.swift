@@ -8,21 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     var articles = [Article]()
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         ArticelsService.shared.fetchArticles { (articles, error) in
             if let articles = articles {
                 self.articles = articles
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
-        
+        setupTableView()
+        setupNavigation()
     }
 
 
+    func setupNavigation() {
+        self.navigationItem.title = "Articles"
+    }
 }
 
