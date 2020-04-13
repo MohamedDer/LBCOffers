@@ -32,7 +32,8 @@ class ArticleTableViewCell: UITableViewCell {
     let categoryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .blue
         label.numberOfLines = 1
         label.minimumScaleFactor = 0.5
         return label
@@ -73,7 +74,7 @@ class ArticleTableViewCell: UITableViewCell {
         priceLabel.bottomAnchor.constraint(equalTo:self.contentView.bottomAnchor, constant: -10).isActive = true
         priceLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         categoryLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
-        categoryLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 10).isActive = true
+        categoryLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         categoryLabel.leadingAnchor.constraint(equalTo: self.titleLabel.trailingAnchor, constant: 10).isActive = true
         isUrgent.leadingAnchor.constraint(equalTo: self.titleLabel.leadingAnchor, constant: 1).isActive = true
         isUrgent.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
@@ -88,7 +89,6 @@ class ArticleTableViewCell: UITableViewCell {
         self.article = article
         self.titleLabel.text = article.title
         self.priceLabel.text = "\(article.price) €"
-        self.categoryLabel.text = "\(article.category_id)"
         self.isUrgent.isHidden = !article.is_urgent
         setupImage()
     }

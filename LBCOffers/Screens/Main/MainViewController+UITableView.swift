@@ -20,12 +20,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.articles.count
+        return self.articles?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell {
-            cell.setupCellWith(article: self.articles[indexPath.row])
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell, let article = self.articles?[indexPath.row] {
+            cell.setupCellWith(article: article)
+            cell.categoryLabel.text = self.getCategoryOf(article)
+            cell.selectionStyle = .none
             return cell
         }
         return UITableViewCell()
