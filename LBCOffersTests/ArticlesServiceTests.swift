@@ -8,9 +8,8 @@
 
 import XCTest
 @testable import LBCOffers
-import LBCOffers
 
-class LBCOffersTests: XCTestCase {
+class ArticlesServiceTests: XCTestCase {
     
     var mockArticlesService: NetworkServiceProtocol?
     var articles: [Article]?
@@ -27,28 +26,46 @@ class LBCOffersTests: XCTestCase {
         articles = nil
         super.tearDown()
     }
-
-    func testArticlesServiceReturnes300Offer() throws {
-        let exp = expectation(description: "Loading articles")
-        mockArticlesService?.fetchData { art,  err in
-            self.articles = art as? [Article]
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 3)
-        XCTAssertEqual(articles!.count, 300, "We should have loaded exactly 300 offres.")
-    }
     
     func testInvalidBaseUrl() throws {
         let exp = expectation(description: "Loading articles")
         mockArticlesService?.baseUrlString = "sdvsvu.cwecw.we23rf"
-        mockArticlesService?.fetchData { art,  err in
+        mockArticlesService?.fetchData { articles,  err in
             self.error = err
             exp.fulfill()
         }
         waitForExpectations(timeout: 3)
         XCTAssertEqual(self.error?.domain, "InvalidURLSession")
     }
-    
 
+    func testArticlesServiceReturnes300Offer() throws {
+        let exp = expectation(description: "Loading articles")
+        mockArticlesService?.fetchData { articles,  err in
+            self.articles = articles as? [Article]
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 3)
+        XCTAssertEqual(articles!.count, 300, "We should have loaded exactly 300 offres.")
+    }
+    
+    func testRandomOfferHasTitle() throws {
+        let exp = expectation(description: "Loading articles")
+        mockArticlesService?.fetchData { articles,  err in
+            self.articles = articles as? [Article]
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 3)
+        XCTAssertNotNil(self.articles?.randomElement()?.title, "A random element does not have a title")
+    }
+    
+    func testRandomOfferHasPrice() throws {
+        let exp = expectation(description: "Loading articles")
+        mockArticlesService?.fetchData { articles,  err in
+            self.articles = articles as? [Article]
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 3)
+        XCTAssertNotNil(self.articles?.randomElement()?.price, "A random element does not have a price")
+    }
 
 }

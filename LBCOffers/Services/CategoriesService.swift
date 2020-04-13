@@ -10,7 +10,7 @@ import Foundation
 
 class CategoriesService: NetworkServiceProtocol {
     
-    var _baseUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
+    var _baseUrl = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 
     var baseUrlString: String {
         get {
