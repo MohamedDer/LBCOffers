@@ -12,6 +12,6 @@ protocol NetworkServiceProtocol: class {
     
     var baseUrlString: String { get set }
     
-    func fetchData(completion: @escaping (_ responseArray: [Decodable]?, _ error: Error?) -> ())
+    func fetchData(completion: @escaping (_ responseArray: [Decodable]?, _ error: NSError?) -> ())
     
 }

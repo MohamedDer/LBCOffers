@@ -8,29 +8,47 @@
 
 import XCTest
 @testable import LBCOffers
+import LBCOffers
 
 class LBCOffersTests: XCTestCase {
     
+    var mockArticlesService: NetworkServiceProtocol?
+    var articles: [Article]?
+    var error: NSError?
     
-
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        mockArticlesService = ArticlesService()
+        articles = [Article]()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        mockArticlesService = nil
+        articles = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testArticlesServiceReturnes300Offer() throws {
+        let exp = expectation(description: "Loading articles")
+        mockArticlesService?.fetchData { art,  err in
+            self.articles = art as? [Article]
+            exp.fulfill()
         }
+        waitForExpectations(timeout: 3)
+        XCTAssertEqual(articles!.count, 300, "We should have loaded exactly 300 offres.")
     }
+    
+    func testInvalidBaseUrl() throws {
+        let exp = expectation(description: "Loading articles")
+        mockArticlesService?.baseUrlString = "sdvsvu.cwecw.we23rf"
+        mockArticlesService?.fetchData { art,  err in
+            self.error = err
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 3)
+        XCTAssertEqual(self.error?.domain, "InvalidURLSession")
+    }
+    
+
 
 }

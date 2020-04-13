@@ -9,9 +9,9 @@
 import Foundation
 
 
-class ArticelsService: NetworkServiceProtocol {
+class ArticlesService: NetworkServiceProtocol {
     
-    public static let shared = ArticelsService()
+    public static let shared = ArticlesService()
     
     var _baseUrlString = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
     var baseUrlString: String {
@@ -24,17 +24,17 @@ class ArticelsService: NetworkServiceProtocol {
     }
     
     
-    func fetchData( completion: @escaping (_ responseArray: [Decodable]?, _ error: Error?) -> () ) {
+    func fetchData( completion: @escaping (_ responseArray: [Decodable]?, _ error: NSError?) -> () ) {
         if let url = URL(string: baseUrlString){
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data else {
-                    return completion(nil, error)
+                    return completion(nil, NSError(domain: "InvalidURLSession", code: 0, userInfo: nil))
                 }
                 do {
                     let responseArticles = try JSONDecoder().decode([Article].self, from: data)
                     completion(responseArticles, nil)
                 } catch{
-                    completion(nil, error)
+                    completion(nil, NSError(domain: "InvalidDataFormat", code: 0, userInfo: nil))
                 }
             }.resume()
         }

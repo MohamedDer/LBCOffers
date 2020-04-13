@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ArticelsService.shared.fetchData { (articles, error) in
+        ArticlesService.shared.fetchData { (articles, error) in
             if let articles = articles as? [Article] {
                 self.articles = articles
                 DispatchQueue.main.async {
